@@ -20,27 +20,30 @@ document.querySelectorAll('.dropbtn').forEach(button => {
         const isMobileWidth = window.innerWidth <= 768;
         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
-        if (isMobileWidth || isTouchDevice) {
+        // Check if this button actually has a dropdown menu next to it
+        const content = button.nextElementSibling;
+        const hasDropdown = content && content.classList.contains('dropdown-content');
+
+        if ((isMobileWidth || isTouchDevice) && hasDropdown) {
+            // ONLY prevent default if there is a dropdown to open
             e.preventDefault();
-            const content = button.nextElementSibling;
             
-            // 1. Check if the one we clicked is ALREADY open
             const isAlreadyOpen = content.classList.contains('open');
 
-            // 2. Close ALL dropdowns first (cleans the slate)
+            // Close ALL other dropdowns
             allDropdowns.forEach(dropdown => {
                 dropdown.classList.remove('open');
             });
 
-            // 3. ONLY open it if it wasn't already open
-            // If it was open, it stays closed now (Toggle Effect)
+            // Toggle this one
             if (!isAlreadyOpen) {
                 content.classList.add('open');
             }
         }
+        // If there's no dropdown (like your Home link), the browser will 
+        // follow the link normally!
     });
 });
-
 
 
 var swiper = new Swiper(".mainSwiper", {
@@ -119,3 +122,72 @@ function switchLang(lang) {
         document.querySelectorAll('.lang-ml').forEach(t => t.classList.add('active'));
     }
 }
+
+
+
+
+
+
+
+
+
+// --- Education Ministry Flipbook Logic (Fixed Version) ---
+document.addEventListener('DOMContentLoaded', () => {
+    // We move these inside so they only look for elements when the page is ready
+    const mainImg = document.getElementById('mainPage');
+    const thumbBox = document.getElementById('thumbStrip');
+    const counter = document.getElementById('pageCounter');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+
+    // !!! THE GUARD !!! 
+    // If 'mainPage' isn't found, it stops here and doesn't break the menu.
+    if (!mainImg) return; 
+
+    const totalPages = 35;
+    let current = 1;
+
+    // 1. Generate Thumbnails
+    if (thumbBox) {
+        thumbBox.innerHTML = ''; 
+        for (let i = 1; i <= totalPages; i++) {
+            const t = document.createElement('img');
+            t.src = `images/education/${i}.jpg`;
+            t.classList.add('thumb');
+            if (i === 1) t.classList.add('active');
+            t.onclick = () => window.jumpToPage(i);
+            thumbBox.appendChild(t);
+        }
+    }
+
+    // 2. The Jump Function
+    window.jumpToPage = function(n) {
+        if (n < 1 || n > totalPages || !mainImg) return;
+        current = n;
+
+        mainImg.classList.remove('flip-animation');
+        void mainImg.offsetWidth; 
+        mainImg.classList.add('flip-animation');
+
+        mainImg.src = `images/education/${current}.jpg`;
+        
+        if (counter) counter.innerText = current;
+
+        document.querySelectorAll('.thumb').forEach((thumb, index) => {
+            thumb.classList.toggle('active', index + 1 === current);
+        });
+    };
+
+    // 3. Button Listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            window.jumpToPage(current + 1);
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            window.jumpToPage(current - 1);
+        });
+    }
+});

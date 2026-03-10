@@ -1624,6 +1624,10 @@
     text-align: center;
 }
 
+.arch-heading {
+    color:#002147; margin-bottom: 50px; text-align:center;
+}
+
 /* Responsive Grid Logic */
 .vicar-grid {
     display: grid;

@@ -1,121 +1,1875 @@
-const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.nav-links');
-const allDropdowns = document.querySelectorAll('.dropdown-content');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Manjari:wght@400;700&display=swap');
 
-menu.addEventListener('click', function() {
-    menu.classList.toggle('is-active');
-    menuLinks.classList.toggle('active');
-
-    // FRESH MENU RESET: Closes all dropdowns when you close the main menu
-    if (!menu.classList.contains('is-active')) {
-        allDropdowns.forEach(dropdown => {
-            dropdown.classList.remove('open');
-        });
-    }
-});
-
-// Optimized Dropdown click logic
-document.querySelectorAll('.dropbtn').forEach(button => {
-    button.addEventListener('click', (e) => {
-        const isMobileWidth = window.innerWidth <= 768;
-        const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-        if (isMobileWidth || isTouchDevice) {
-            e.preventDefault();
-            const content = button.nextElementSibling;
-            
-            // 1. Check if the one we clicked is ALREADY open
-            const isAlreadyOpen = content.classList.contains('open');
-
-            // 2. Close ALL dropdowns first (cleans the slate)
-            allDropdowns.forEach(dropdown => {
-                dropdown.classList.remove('open');
-            });
-
-            // 3. ONLY open it if it wasn't already open
-            // If it was open, it stays closed now (Toggle Effect)
-            if (!isAlreadyOpen) {
-                content.classList.add('open');
-            }
-        }
-    });
-});
-
-
-
-var swiper = new Swiper(".mainSwiper", {
-    effect: "fade",
-    fadeEffect: {
-        crossFade: true // Fixes the "bleeding" overlap issue from your screenshot
-    },
-    loop: true,
-    speed: 1000, // Makes the transition feel more premium/royal
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    // These two ensure the mobile height is always calculated correctly
-    observer: true,
-    observeParents: true,
-    watchSlidesProgress: true,
-});
-
-
-
-
-
-function updateClock() {
-    const now = new Date();
-    
-    // Format Date: e.g., Tuesday, March 3, 2026
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('current-date').innerText = now.toLocaleDateString(undefined, dateOptions);
-
-    // Format Time: 09:01:10 AM
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let seconds = now.getSeconds();
-    let ampm = hours >= 12 ? 'PM' : 'AM';
-    
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    seconds = seconds < 10 ? '0'+seconds : seconds;
-    
-    const timeString = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-    document.getElementById('live-clock').innerText = timeString;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-setInterval(updateClock, 1000);
-updateClock(); // Run immediately
+.top-head {
+    background-color: #f4eee0; 
+    padding: 20px 0;
+    border-bottom: 3px solid #d4af37;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* This is your Base Style */
+.side-img {
+    height: 150px; /* Changed this to 150px for a better look, change to 300 if you want it huge */
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.header-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 42px; /* Set desktop size here */
+    color: #c41e3a;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.sub-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; /* Set desktop size here */
+    color: #002147;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+/* MOBILE SETTINGS (Small Screens) */
+@media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 0.8fr 3fr 0.8fr;
+        gap: 5px;
+    }
+    .side-img {
+        height: 55px; /* Tiny for phones */
+    }
+    .main-title {
+        font-size: 15px;
+        letter-spacing: 0;
+    }
+    .sub-title {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+/* TABLET SETTINGS */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .side-img {
+        height: 100px;
+    }
+    .main-title {
+        font-size: 28px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-head {
+    background-color: #f4eee0; 
+    padding: 20px 0;
+    border-bottom: 3px solid #d4af37;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* This is your Base Style */
+.side-img {
+    height: 150px; /* Changed this to 150px for a better look, change to 300 if you want it huge */
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.header-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 42px; /* Set desktop size here */
+    color: #c41e3a;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.sub-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; /* Set desktop size here */
+    color: #002147;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+/* MOBILE SETTINGS (Small Screens) */
+@media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 0.8fr 3fr 0.8fr;
+        gap: 5px;
+    }
+    .side-img {
+        height: 55px; /* Tiny for phones */
+    }
+    .main-title {
+        font-size: 15px;
+        letter-spacing: 0;
+    }
+    .sub-title {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+/* TABLET SETTINGS */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .side-img {
+        height: 100px;
+    }
+    .main-title {
+        font-size: 28px;
+    }
+}
+
+/* --- NAVIGATION BAR --- */
+.main-nav {
+    background-color: #002147;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 10px 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #f4eee0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+/* --- THE "MODEL" DROPDOWN (DESKTOP) --- */
+.dropdown { position: relative; }
+
+.dropdown-content {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #f4eee0; 
+    min-width: 250px;
+    top: 100%; /* Sits exactly at the bottom of the blue nav bar */
+    left: 0;
+    list-style: none;
+    padding: 0;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(15px); /* This creates the "slowly down" effect */
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    pointer-events: none;
+    border-top: 3px solid #d4af37; /* Pro detail from image_c08336.png */
+}
+
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-content {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0); /* Slides up to the bar */
+        pointer-events: auto;
+    }
+}
+
+
+/* --- MOBILE HAMBURGER (BREATHING SPACE) --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px; /* Increased gap for breath space */
+    z-index: 1001; 
+}
+
+.bar {
+    width: 28px; /* Slightly wider for better look */
+    height: 1px;
+    background-color: #f4eee0;
+    transition: 0.3s;
+}
+
+ 
+/* Desktop Separator Lines */
+.dropdown-content li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
+}
+
+.dropdown-content li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content li a {
+    padding: 12px 25px; /* Indent space on the left */
+    display: block;
+    font-size: 14px;
+    color: #002147; 
+    text-transform: capitalize;
+    text-align: left;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.dropdown-content li a:hover {
+    background-color: #e9e2d0; /* Subtle hover color like image_c08336.png */
+    color: #002147;
+    padding-left: 30px; /* Slight move-right animation on hover */
+}
+
+/* --- MOBILE RESPONSIVE (Arranged for Pro View) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        gap: 3px; /* Professional breathing space between bars */
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #002147;
+        position: absolute;
+        top: 100%; /* FIXED: This kills the white bar gap for good */
+        left: 0;
+        text-align: right;
+        padding: 5px 0;
+        border-top: 0px solid rgba(255,255,255,0.1); /* Subtle divider from top head */
+    }
+
+    .nav-links.active { display: flex; }
+
+    /* Main List Item Spacing */
+    .nav-links li {
+        width: 100%;
+        border-bottom: 2px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-links li a {
+        padding: 2px 25px; /* Comfortable tap target for fingers */
+        display: block;
+        color: #f4eee0;
+        transition: 0.5s ease;
+    }
+
+    /* MOBILE DROPDOWN (Fresh Reset Style) */
+    .dropdown-content {
+        position: static;
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        width: 100%;
+        background-color: #001a38; /* Darker navy for contrast */
+        border-right: 4px solid #d4af37; /* The Gold side-indicator */
+        border-top: none; /* Removed desktop gold border */
+        padding: 0px;
+        transition: all 0.4s ease-in-out;
+    }
+
+
+    /* Remove lines between sub-items for a "Fresh" look */
+    .dropdown-content li { border-bottom: none; }
+
+    .dropdown-content li a {
+        color: #cccccc;
+        text-align: right;
+        padding: 6px 45px; /* Indented from right */
+        font-size: 13px;
+        text-transform: capitalize;
+        transition: 0.3s ease; /* Smooth color change */
+    }
+}
+
+/* GOLD HOVER EFFECT FOR SUB-MENU ITEMS */
+    .dropdown-content li a:hover 
+    .dropdown-content li a:active{
+        color: #d4af37;
+        background-color: transparent;
+    }
+
+/* --- FIXED HAMBURGER TO X ANIMATION --- */
+.bar { 
+    width: 28px; 
+    height: 3px; 
+    background-color: #f4eee0; 
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother curve */
+}
+
+/* Perfect X alignment */
+#mobile-menu.is-active .bar:nth-child(2) { 
+    opacity: 0; 
+}
+#mobile-menu.is-active .bar:nth-child(1) { 
+    transform: translateY(9px) rotate(45deg); 
+}
+#mobile-menu.is-active .bar:nth-child(3) { 
+    transform: translateY(-9px) rotate(-45deg); 
+}
+
+/* --- REPAIR: ADD THIS TO THE VERY BOTTOM OF THE FILE --- */
+.dropdown-content.open {
+    max-height: 500px !important; 
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    padding: 5px 0 !important;
+}
+
+
+
+
+/* --- GLOBAL HERO STRUCTURE --- */
+.hero-slider {
+    width: 100%;
+    height: 485px;
+    border-bottom: 8px solid #D4AF37;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important; 
+    display: flex;
+    position: relative;
+}
+
+.slide-container {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.slide-text { flex: 0 0 55%; color: white; z-index: 20; }
+.slide-image { 
+    flex: 0 0 45%; 
+    height: 100%; 
+    display: flex; 
+    align-items: flex-end; /* Anchors to bottom */
+    justify-content: center; 
+}
+
+.hero-img { 
+    height: 480px !important; /* Forces the image to fill the desktop slider height */
+    width: auto; 
+    object-fit: contain; 
+    display: block;
+    object-position: bottom; /* Keeps feet on the gold line */
+}
+.hero-name { font-family: 'Cinzel', serif; font-size: 3.2rem; color: #D4AF37; line-height: 1.1; margin: 0; }
+.hero-label { font-family: 'Poppins', sans-serif; font-size: 1.1rem; color: #D4AF37; margin-bottom: 5px; letter-spacing: 2px; }
+.hero-quote { font-family: 'Poppins', sans-serif; font-size: 1.1rem; border-left: 3px solid #D4AF37; padding-left: 15px; margin: 20px 0; }
+.hero-btn { display: inline-block; background: #D4AF37; color: #000; padding: 12px 30px; text-decoration: none; font-weight: 600; font-family: 'Poppins'; margin-top: 10px; }
+
+/* --- BACKGROUNDS --- */
+.slide-pope      { background: radial-gradient(circle at center, #800000 0%, #4a0000 40%, #1a0000 100%); }
+.slide-bishop    { background: radial-gradient(circle at center, #301934 0%, #1a0f1d 50%, #000000 100%); }
+.slide-aux       { background: radial-gradient(circle at center, #001f3f 0%, #001326 50%, #000000 100%); }
+.slide-emereitus { background: radial-gradient(circle at center, #004d40 0%, #002b24 50%, #000000 100%); }
+.slide-church    { background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%); }
+.slide-patron    { background: radial-gradient(circle at center, #4a332d 0%, #000000 100%); }
+
+
+.malayalam-text {
+    font-family: 'Manjari', sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    /* Optional: Slightly increase size if it looks too small compared to English */
+    font-size: 1.5em; 
+}
+
+/* --- DESKTOP ZIG-ZAG (Slides 2, 4, 5) --- */
+@media (min-width: 769px) {
+    .slide-bishop .slide-container, 
+    .slide-emereitus .slide-container,
+    .slide-church .slide-container {
+        flex-direction: row-reverse;
+    }
+    .slide-bishop .slide-text, .slide-emereitus .slide-text, .slide-church .slide-text { padding-left: 50px; }
+}
+
+/* --- THE MASTER MOBILE RULE (FIXES EVERYTHING) --- */
+@media (max-width: 768px) {
+    .hero-slider { 
+        height: 550px !important; 
+        background: #000;
+    }
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    background-color: inherit; /* This makes the slide color fill the 550px height */
+}
+
+    .swiper-pagination-bullet {
+    background: #D4AF37 !important; /* Matches your gold theme */
+}
+.swiper-pagination {
+    bottom: 5px !important; /* Keeps dots just above the gold border */
+}
+
+
+    .slide-container { 
+        flex-direction: column !important; 
+        text-align: center;
+        justify-content: flex-start;
+        padding-top: 60px;
+        height: 100%;
+    }
+
+    .slide-text { width: 100% !important; flex: 0 0 auto !important; padding: 10px; }
+    .hero-name { font-size: 1.8rem; }
+    .hero-quote { border-left: none; border-top: 2px solid #D4AF37; padding: 10px 0; margin: 15px auto; max-width: 85%; }
+
+    /* The Gravity Fix: Pushes image container to the gold border */
+    .slide-image { 
+        width: 100% !important;
+        height: 350px;
+        flex: 1 1 auto !important; 
+        align-items: flex-end !important; 
+        margin-top: auto; /* Pushes everything above it up */
+        overflow: visible;
+    }
+
+    .hero-img { 
+        display: block; /* Removes the text-baseline gap */
+        height: 350px !important; /* Scaled down for mobile screens */
+        width: auto !important;
+        object-fit: contain;
+        object-position: bottom;
+        margin-bottom: -5px; /* Pulls it tight against the gold border */
+    }
+}
+.img-church {
+    transform: scale(1.50); /* Makes just these two 15% larger */
+    transform-origin: bottom;
+}
+
+.img-patron {
+    transform: scale(1); /* Makes just these two 15% larger */
+    transform-origin: bottom;
+}
 
 
 
 
 
 
-function switchLang(lang) {
-    // 1. Handle the Buttons (Shadow/Underline)
-    const buttons = document.querySelectorAll('.hist-lang-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
+/* --- ANNOUNCEMENT TICKER STYLES --- */
+.announcement-bar {
+    display: flex;
+    align-items: center;
+    background-color: #002147; /* Your Nav Bar Blue */
+    height: 45px;
+    overflow: hidden;
+    border-bottom: 7px solid #D4AF37; /* Gold bottom border to match theme */
+    position: relative;
+    z-index: 10;
+}
 
-    // 2. Handle the Text Visibility
-    const allTexts = document.querySelectorAll('.hist-desc-text');
+.announcement-label {
+    font-family: 'Poppins', sans-serif; /* Changed to Poppins */
+    background-color: #fdf5e6; /* Top Head Cream/Off-white */
+    color: #002147; /* Nav Bar Blue text */
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 2;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+    border-right: 7px solid #D4AF37; /* Gold separator line */
+}
+
+.announcement-track {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #002147; /* Blue scrolling background */
+}
+
+.scrolling-text {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-loop 30s linear infinite; /* Adjust 30s for speed */
+}
+
+.scrolling-text a {
+    color: #fdf5e6; /* Top Head Cream text color */
+    text-decoration: none;
+    font-family: 'Manjari', sans-serif; /* Your Malayalam font */
+    font-size: 1.4rem;
+    padding-right: 100px; /* Space between announcements */
+    transition: color 0.3s ease;
+}
+
+.scrolling-text a:hover {
+    color: #D4AF37; /* Turns Gold on hover */
+}
+
+/* THE LOOP ANIMATION */
+@keyframes ticker-loop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Loops halfway through repeated content */
+}
+
+/* MOBILE ADJUSTMENTS for S23 Ultra */
+@media (max-width: 768px) {
+    .announcement-label {
+        font-size: 0.75rem;
+        padding: 0 10px;
+    }
+    .scrolling-text a {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+
+/* Unique ID to isolate this section from the rest of the site */
+#welcome-section-poonthura {
+    background-color: #fdf5e6 !important; 
+    padding: 80px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+#welcome-section-poonthura .church-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#welcome-section-poonthura .section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#welcome-section-poonthura .poppins-bold {
+    font-family: 'Poppins', sans-serif;
+    color: #002147; /* Nav Bar Blue */
+    font-weight: 800;
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+#welcome-section-poonthura .forane-text {
+    font-family: 'Poppins', sans-serif;
+    color: #D4AF37; /* Gold */
+    font-weight: 600;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+#welcome-section-poonthura .gold-line-separator {
+    width: 70px;
+    height: 3px;
+    background-color: #D4AF37;
+    margin: 15px auto;
+}
+
+#welcome-section-poonthura .content-grid {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+#welcome-section-poonthura .image-column {
+    flex: 1;
+}
+
+/* Image styling & Animation */
+#welcome-section-poonthura .reveal-left {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(5px 10px 20px rgba(0,0,0,0.1));
+    animation: slideFromOutside 1.4s ease-out forwards;
+}
+
+#welcome-section-poonthura .text-column {
+    flex: 1.2;
+}
+
+#welcome-section-poonthura .poppins-semibold {
+    font-family: 'Poppins', sans-serif;
+    color: #002147;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+#welcome-section-poonthura .history-p {
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Button with Nav Blue + Gold Border */
+#welcome-section-poonthura .read-more-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background-color: #002147;
+    color: #fdf5e6 !important;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    border: 2px solid #D4AF37;
+    transition: 0.3s ease-in-out;
+}
+
+#welcome-section-poonthura .read-more-btn:hover {
+    background-color: #D4AF37;
+    color: #002147 !important;
+}
+
+/* Keyframe for sliding from outside */
+@keyframes slideFromOutside {
+    0% { transform: translateX(-150px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* S23 Ultra / Mobile View */
+@media (max-width: 992px) {
+    #welcome-section-poonthura .content-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    #welcome-section-poonthura .poppins-bold {
+        font-size: 1.7rem;
+    }
+    #welcome-section-poonthura .history-p {
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+
+/* --- PRIEST SECTION SCOPED STYLES --- */
+
+#underwater-priest-section .gold-line-small {
+    width: 80px; /* Slightly wider for a more modern look */
+    height: 3px;
+    /* A 3-point gradient: Deep Gold -> Bright Reflection -> Deep Gold */
+    background: linear-gradient(
+        90deg, 
+        #9c7e1d 0%, 
+        #D4AF37 50%, 
+        #9c7e1d 100%
+    );
+    margin: 15px auto 0; /* Centers it perfectly */
+    border-radius: 50px; /* Rounded edges for a smooth, modern feel */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow to make it pop */
+    display: block;
+}
+
+
+/* Scoped Header: Prevents conflict with Welcome Page */
+/* Title Alignment */
+.priest-section-title {
+    font-family: 'Poppins', sans-serif; 
+    color: #ffffff !important; /* Forces white only here */
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+/* Perfect Trinity Alignment */
+.trinity-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligns them from the top for better symmetry */
+    gap: 40px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+/* --- THE ROYAL FRAMES --- */
+
+/* Image Assignments */
+.vicar-img { background-image: url('images/fr1.jpg'); }
+.asst-1-img { background-image: url('images/fr2.jpeg'); }
+.asst-2-img { background-image: url('images/fr3.jpeg'); }
+
+/* Frame Settings */
+.photo-frame-large, .photo-frame-small {
+    border: 4px solid #D4AF37;
+    border-radius: 50%;
+    margin: 0 auto; /* Centers frame within priest-card */
+    background-size: cover;
+    background-position: center top;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+.photo-frame-large { width: 240px; height: 240px; }
+.photo-frame-small { width: 175px; height: 175px; }
+
+/* SLIGHTLY MOVE FORWARD HOVER */
+.priest-card:hover .photo-frame-large,
+.priest-card:hover .photo-frame-small {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+}
+
+/* Text Styling - Scoped to this section */
+#underwater-priest-section .priest-name-gold {
+    font-family: 'Poppins', sans-serif;
+    color: #D4AF37;
+    font-weight: 700;
+    margin: 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    text-align: center;
+}
+
+.vicar-main .priest-name-gold { font-size: 1.5rem; }
+.asst-small .priest-name-gold { font-size: 1.1rem; }
+
+#underwater-priest-section .priest-desig {
+    font-family: 'Poppins', sans-serif;
+    color: #f0f0f0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* --- KEEPING YOUR EXACT ANIMATION & MOBILE FIXES --- */
+
+.ocean-waves { width: 100%; height: 15vh; min-height: 100px; background-color: #fdf5e6; display: block; position: relative; z-index: 10; }
+.waves { width: 100%; height: 100%; display: block; margin-bottom: -5px; }
+.deep-sea-body { background-color: #002147; padding-top: 20px; padding-bottom: 100px; margin-top: -5px; }
+
+.parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+
+@keyframes move-forever {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+}
+
+
+/* --- NEW: UNIVERSAL BUBBLE SYSTEM --- */
+.sea-bubbles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 99;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -30px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: bubble-rise 12s infinite ease-in;
+}
+
+.b1 { left: 5%;  width: 15px; height: 15px; animation-delay: 0s; }
+.b2 { left: 25%; width: 10px; height: 10px; animation-delay: 4s; }
+.b3 { left: 45%; width: 20px; height: 20px; animation-delay: 2s; }
+.b4 { left: 65%; width: 12px; height: 12px; animation-delay: 6s; }
+.b5 { left: 85%; width: 18px; height: 18px; animation-delay: 1s; }
+
+@keyframes bubble-rise {
+    0% { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
+    20% { opacity: 0.4; }
+    50% { transform: translateY(-50vh) scale(1.2) translateX(20px); }
+    100% { transform: translateY(-100vh) scale(1.5) translateX(-20px); opacity: 0; }
+}
+
+/* Ensure the parent container can hold absolute bubbles */
+.deep-sea-body {
+    position: relative !important;
+    min-height: 500px; /* Ensures desktop has enough height to see them */
+}
+
+
+@media (max-width: 768px) {
+    .ocean-waves { height: 60px; min-height: 60px; margin-bottom: -1px; }
+    .waves { transform: scaleY(1.1); transform-origin: top; display: block; }
+    .trinity-flex { flex-direction: column; align-items: center; gap: 40px; }
+    .vicar-main { order: -1; } /* Keeps Priest on top on S23 Ultra */
+    .deep-sea-body { margin-top: -5px !important; position: relative; z-index: 1; }
+    .priest-section-title { font-size: 1.6rem; }
+    .photo-frame-large { width: 200px; height: 200px; }
+    .photo-frame-small { width: 145px; height: 145px; }
+    #underwater-priest-section .poppins-bold { font-size: 1.5rem; padding: 0 15px; }
+}
+
+
+
+
+
+#liturgy-section {
+    background-color: #fdfaf5; /* Cream White */
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Premium Gold Line Detail */
+.gold-line-small {
+    width: 100px; /* Slightly wider for the stacked view */
+    height: 4px; /* Increased to 4px as discussed for better visibility */
+    background: linear-gradient(90deg, transparent, #D4AF37, #9c7e1d, #D4AF37, transparent);
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.liturgy-header { text-align: center; margin-bottom: 40px; }
+.liturgy-title { color: #002147; font-weight: 700; font-size: 2rem; margin-bottom: 5px; }
+
+.live-datetime {
+    color: #002147;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.local-label { color: #9c7e1d; font-weight: 700; margin-left: 5px; }
+
+/* Change Grid to Flex Column for Stacked View */
+.mass-table-wrapper {
+    display: flex;
+    flex-direction: column; /* This stacks them vertically */
+    align-items: center;    /* Centers the tables */
+    gap: 30px;              /* Adds space between the two tables */
+    max-width: 800px;       /* Keeps it from becoming too wide on Desktop */
+    margin: 0 auto;
+}
+
+
+.mass-column {
+    width: 100%;            /* Makes both tables the same width */
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #e0d5c0;
+}
+
+/* We can remove the border-right since they aren't side-by-side anymore */
+.mass-column:first-child {
+    border-right: 1px solid #e0d5c0; /* Keep or remove, doesn't hurt */
+}
+
+.column-header {
+    padding: 20px;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.blue-bg { background: #002147; }
+.gold-bg { background: linear-gradient(90deg, #9c7e1d, #D4AF37, #9c7e1d); }
+
+.mass-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 35px;
+    align-items: center;
+    border-bottom: 1px solid #f0eee9;
+    color: #333;
+
+    /* THE MAGIC: Smooth transition for the move */
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    cursor: default;
+}
+
+/* THE HOVER EFFECT */
+.mass-row:hover {
+    background-color: #fdfaf5; /* Very subtle cream glow */
+    padding-left: 40px;       /* Nudges the text to the right */
+    padding-right: 20px;      /* Keeps the total width balanced */
+}
+
+.mass-row span, .mass-row strong {
+    transition: color 0.3s ease;
+}
+
+/* 2. Blue Bar for the FIRST table (Weekdays) */
+.mass-column:first-child .mass-row:hover {
+    box-shadow: inset 8px 0 0 #002147; /* Deep Blue Bar */
+}
+.mass-column:first-child .mass-row:hover span {
+    color: #002147; /* Text turns Blue to match */
+}
+
+
+/* 3. Gold Bar for the SECOND table (Sundays) */
+.mass-column:last-child .mass-row:hover {
+    box-shadow: inset 8px 0 0 #D4AF37; /* Gold Bar */
+}
+.mass-column:last-child .mass-row:hover span {
+    color: #9c7e1d; /* Text turns Gold to match */
+}
+
+
+.mass-row span { font-weight: 500; }
+.mass-row strong { color: #002147; }
+.mass-row small { color: #9c7e1d; font-style: italic; }
+
+
+.mass-row:hover span {
+    color: #9c7e1d; /* Day name turns gold on hover */
+}
+
+.mass-row:hover strong {
+    transform: scale(1.1); /* Time gets slightly bigger */
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .liturgy-title { font-size: 1.4rem; }
+    .live-datetime { font-size: 0.85rem; }
+    .mass-table-wrapper { width: 100%; gap: 20Px; } /* Slightly tighter for mobile */
+    .mass-row { padding: 15px 20px; font-size: 0.85rem; }
+}
+
+
+.calendar-action {
+    text-align: center;
+    margin-top: 50px; /* Space between table and button */
+}
+
+.event-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: transparent;
+    color: #002147; /* Deep Blue */
+    border: 2px solid #D4AF37; /* Gold Border */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.event-btn:hover {
+    background-color: #002147; /* Switches to Deep Blue on hover */
+    color: #fff;
+    border-color: #002147;
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 10px 20px rgba(0, 33, 71, 0.2);
+}
+
+.btn-arrow {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.event-btn:hover .btn-arrow {
+    transform: translateX(5px); /* Arrow nudges forward on hover */
+}
+
+
+/* Mobile Tweak for S23 Ultra */
+@media (max-width: 768px) {
+    .event-btn {
+        padding: 12px 25px;
+        font-size: 0.8rem;
+        width: 80%; /* Makes it easier to tap on mobile */
+    }
+}
+
+.calendar-action {
+    text-align: center;
+    margin-top: 50px; /* Space between table and button */
+}
+
+.event-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: transparent;
+    color: #002147; /* Deep Blue */
+    border: 2px solid #D4AF37; /* Gold Border */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.event-btn:hover {
+    background-color: #002147; /* Switches to Deep Blue on hover */
+    color: #fff;
+    border-color: #002147;
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 10px 20px rgba(0, 33, 71, 0.2);
+}
+
+.btn-arrow {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.event-btn:hover .btn-arrow {
+    transform: translateX(5px); /* Arrow nudges forward on hover */
+}
+
+/* Mobile Tweak for S23 Ultra */
+@media (max-width: 768px) {
+    .event-btn {
+        padding: 12px 25px;
+        font-size: 0.8rem;
+        width: 80%; /* Makes it easier to tap on mobile */
+    }
+}
+
+
+
+/* =========================================
+   MAIN FOOTER STYLES
+   ========================================= */
+.main-footer {
+    background-color: #002147; /* Signature Deep Blue */
+    color: #ffffff;
+    padding: 80px 20px 30px; /* Increased top padding for a grand feel */
+    font-family: 'Poppins', sans-serif;
+    border-top: 5px solid #D4AF37; /* Slightly thicker Gold Top Border */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr; 
+    gap: 50px;
+}
+
+/* --- Column 1: Brand & Socials --- */
+.footer-logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #D4AF37;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.footer-desc {
+    line-height: 1.8;
+    color: #cbd5e0;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+/* Social Media Icons Styling */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D4AF37;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon:hover {
+    background-color: #D4AF37;
+    color: #002147;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    border-color: #D4AF37;
+}
+
+/* --- Column 2: Links --- */
+.footer-col h4 {
+    color: #D4AF37;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background: #D4AF37;
+}
+
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 15px; }
+.footer-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover { 
+    color: #D4AF37; 
+    padding-left: 8px; 
+}
+
+/* --- Column 3: Contact Info --- */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #cbd5e0;
+}
+
+.gold-icon {
+    color: #D4AF37;
+    font-size: 1.1rem;
+    margin-top: 3px;
+}
+
+.contact-item p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- Bottom Bar --- */
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    margin: 5px 0;
+}
+
+.dev-credit { 
+    font-style: italic; 
+    opacity: 0.6;}
+
+    /* --- Mobile Optimization (Fixed for S23 Ultra) --- */
+@media (max-width: 768px) {
+    .main-footer {
+        background: linear-gradient(180deg, #002147 0%, #00152e 100%);
+        padding: 50px 15px 30px; /* Slightly less side padding */
+        overflow-x: hidden;      /* Prevents any horizontal scrolling */
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr; 
+        text-align: center;
+        gap: 40px;
+        width: 100%;             /* Ensures container stays in bounds */
+    }
+
+    .footer-col {
+        width: 100%;
+        padding: 0 10px;         /* Padding inside each column */
+        box-sizing: border-box;
+    }
+
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-socials {
+        justify-content: center;
+    }
+
+    /* THE CONTACT FIX */
+    .contact-item {
+        flex-direction: column;  /* Icon on top */
+        align-items: center;     /* Everything centered */
+        gap: 5px;
+        margin-bottom: 25px;
+        width: 100%;
+    }
+
+    .contact-item p {
+        font-size: 0.9rem;
+        word-wrap: break-word;   /* This stops the email from going outside */
+        overflow-wrap: break-word;
+        max-width: 280px;        /* Keeps the text block narrow enough */
+        margin: 0 auto;
+    }
+
+    .gold-icon {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .footer-links a:hover {
+        padding-left: 0; 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* History Page Unique Styles */
+.hist-section-container {
+    background-color: #fffafa; /* Soft off-white background */
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.hist-main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: #002147;
+    margin-bottom: 10px;
+}
+
+.hist-sub-title {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.hist-intro-description {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Professional Switcher */
+.hist-switcher-wrap {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.hist-lang-btn {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #888;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-bottom: 3px solid transparent;
+}
+
+.hist-lang-btn.active {
+    color: #002147;
+    border-bottom: 3px solid #D4AF37;
+    text-shadow: 0px 4px 10px rgba(212, 175, 55, 0.3);
+}
+
+.hist-divider {
+    color: #ccc;
+    font-weight: 300;
+}
+
+/* Hover: Year Box lifts up slightly */
+.hist-timeline-item:hover .hist-year {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+    background-color: #fdfdfd;
+}
+
+/* Year Floating Box */
+.hist-year {
+    display: inline-block;
+    background: #ffffff;
+    color: #D4AF37;
+    font-size: 1.1rem;
+    font-weight: 800;
+    padding: 12px 35px;
+    border-radius: 12px; /* Slightly more "Card" like than a pill */
+    border-bottom: 4px solid #D4AF37; /* Gold base */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+/* Entry Title */
+.hist-entry-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: #002147;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hist-desc-text {
+    display: none; 
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+
+/* ONLY show the one that has the 'active' class */
+.hist-desc-text.active {
+    display: block !important;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+
+/* Image with "Icon" Frame */
+.hist-img-box {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px;
+    border: 3px solid #fff;
+    outline: 1px solid #D4AF37; /* Thin gold frame */
+    margin: 20px auto;
+    transition: all 0.5s ease;
+    filter: grayscale(20%); /* Slight vintage look */
+}
+
+
+/* Hover Effect for Image */
+.hist-timeline-item:hover .hist-img-box {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* The Cross Divider Animation */
+.hist-cross-divider {
+    font-size: 28px;
+    color: #D4AF37;
+    margin: 45px 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
+}
+
+.hist-timeline-item:hover .hist-cross-divider {
+ transform: translateY(15px); /* Gentle forward/downward push */
+    opacity: 1;
+    text-shadow: 0 5px 10px rgba(212, 175, 55, 0.4);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+/* Reading Room - Separate Section Styles */
+.arch-reading-room {
+    background: linear-gradient(180deg, #001a33 0%, #000b1a 100%);
+    padding: 50px 20px;
+    text-align: center;
+    color: #ffffff;
+    border-top: 4px solid #D4AF37; /* Gold Divider from Timeline */
+}
+
+.arch-top-cross {
+    font-size: 50px;
+    color: #D4AF37;
+    margin-bottom: 15px;
+}
+
+.arch-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: #D4AF37;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.arch-subtext {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+/* The Glass Card Effect */
+.arch-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 40px 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease;
+}
+
+.arch-card:hover {
+    transform: translateY(-10px);
+    border-color: #D4AF37;
+}
+
+.arch-book-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.arch-info h4 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.arch-info p {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-bottom: 30px;
+}
+
+/* The "Click Here" Button */
+.arch-view-btn {
+    display: flex;
+    flex-direction: column;
+    background-color: #D4AF37;
+    color: #000b1a !important;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 12px;
+    font-weight: 800;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+.arch-view-btn span {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.arch-view-btn small {
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-top: 4px;
+    opacity: 0.8;
+}
+
+.arch-view-btn:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Tweak for S23 Ultra */
+@media (max-width: 600px) {
+    .arch-heading { font-size: 1.8rem; }
+    .arch-card { padding: 30px 20px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   PRIEST LINEAGE SECTION - FULL STYLES
+   ========================================= */
+
+.vicar-section {
+    padding: 80px 20px;
+    background-color: #fcf6f6;
+    text-align: center;
+}
+
+.arch-heading {
+    color:#002147; margin-bottom: 50px; text-align:center;
+}
+
+/* Responsive Grid Logic */
+.vicar-grid {
+    display: grid;
+    /* 1 column on mobile, automatically adds more on S23 Ultra landscape or PC */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The Priest Card Base */
+.vicar-card {
+    background: #ffffff;
+    padding: 40px 20px;
+    border-radius: 25px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    /* The smooth transition for the hover effect */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* --- THE HOVER EFFECT --- */
+.vicar-card:hover {
+    transform: translateY(-15px); /* Lifts the card up */
+    border-color: #D4AF37; /* Border turns Gold */
+    /* Deep Gold Glow for S23 Ultra display */
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25); 
+}
+
+/* The Gold Halo Image Wrapper */
+.vicar-img-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    border: 3px solid #D4AF37;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 5px;
+}
+
+/* The Actual Photo with Zoom on Hover */
+.vicar-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.4s ease; /* Smooth zoom transition */
+}
+
+.vicar-card:hover .vicar-photo {
+    transform: scale(1.1); /* Zoom effect when touching/hovering */
+}
+
+/* The Gold Icon SVG (Fallback) */
+.vicar-icon-svg {
+    width: 80px;
+    height: 80px;
+    z-index: 1;
+}
+
+/* Priest Name Styling */
+.vicar-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: #002147; /* Navy Blue */
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Tenure Years Badge */
+.vicar-years {
+    display: inline-block;
+    background: #D4AF37; /* Gold */
+    color: #002147; /* Navy text on Gold */
+    padding: 6px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border: 1px solid #D4AF37;
+    transition: all 0.3s ease;
+}
+
+/* Reverse colors for the years badge on hover */
+.vicar-card:hover .vicar-years {
+    background-color: #002147;
+    color: #D4AF37;
+}
+
+/* Mobile Tweak for smaller screens */
+@media (max-width: 600px) {
+    .vicar-grid {
+        gap: 25px;
+    }
+    .vicar-card {
+        padding: 30px 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   PARISH AT A GLANCE - FULL STYLES
+   ========================================= */
+
+.glance-container {
+    padding: 80px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.glance-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    color: #002147; /* Navy Blue */
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.glance-divider {
+    width: 80px;
+    height: 4px;
+    background-color: #D4AF37; /* Gold */
+    margin: 0 auto 25px;
+    border-radius: 2px;
+}
+
+.glance-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- Table Structure --- */
+.glance-table-wrapper {
+    overflow-x: auto; /* Ensures smooth scrolling on your S23 Ultra */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.glance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: none;
+}
+
+.glance-table td {
+    padding: 22px 30px;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 1.05rem;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Left Column (Label) */
+.glance-table td.label {
+    width: 45%;
+    color: #002147;
+    font-weight: 700;
+    text-align: left;
+    background-color: #f9f9f9;
+}
+
+/* Right Column (Data) */
+.glance-table td.data {
+    color: #444;
+    text-align: left;
+    font-weight: 400;
+}
+
+/* --- THE PREMIUM HOVER EFFECT --- */
+.glance-table tr {
+    cursor: pointer;
+}
+
+.glance-table tr:hover td {
+    background-color: #002147 !important; /* Row turns Navy Blue */
+    color: #ffffff !important; /* Text turns White */
+}
+
+/* Specific Gold detail for the label on hover */
+.glance-table tr:hover td.label {
+    color: #D4AF37 !important; /* Label text turns Gold */
+    padding-left: 45px; /* Elegant "slide-in" effect */
+}
+
+/* Highlight the data text on hover */
+.glance-table tr:hover td.data {
+    color: #f0f0f0 !important;
+}
+
+/* Zebra Striping for better readability when not hovering */
+.glance-table tr:nth-child(even) td.data {
+    background-color: #fafafa;
+}
+
+/* Responsive Tweak for Mobile */
+@media (max-width: 600px) {
+    .glance-title {
+        font-size: 2rem;
+    }
     
-    // First, hide every single description
-    allTexts.forEach(text => text.classList.remove('active'));
-
-    if (lang === 'en') {
-        buttons[0].classList.add('active'); // Light up English button
-        // Show only English descriptions
-        document.querySelectorAll('.lang-en').forEach(t => t.classList.add('active'));
-    } else {
-        buttons[1].classList.add('active'); // Light up Malayalam button
-        // Show only Malayalam descriptions
-        document.querySelectorAll('.lang-ml').forEach(t => t.classList.add('active'));
+    .glance-table td {
+        padding: 18px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .glance-table tr:hover td.label {
+        padding-left: 25px; /* Smaller slide effect on mobile */
     }
 }

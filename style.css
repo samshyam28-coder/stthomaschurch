@@ -1873,3 +1873,160 @@
         padding-left: 25px; /* Smaller slide effect on mobile */
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* --- Education Ministry Section Styling --- */
+.edu-platform { background: #f4faff; padding: 50px 0; }
+.edu-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; text-align: center; }
+.edu-text-header {
+    padding: 10px 0 40px;
+    text-align: center;
+}
+
+.edu-platform { 
+    background-color: #ffffff;
+    /* Subtle paper texture or light gray pattern */
+    background-image: radial-gradient(#d1d1d1 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    padding: 20px 0;
+}
+/* The Main Title */
+.edu-text-header h2 { 
+    font-family: 'Cinzel', serif; /* Elegant, official look */
+    color: #002147; 
+    font-size: 2.0rem; 
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    position: relative;
+}
+/* Decorative Gold Lines */
+.edu-text-header h2::before, .edu-text-header h2::after {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: #B8860B;
+    vertical-align: middle;
+    margin: 0 20px;
+}
+
+/* The Subtitle */
+.edu-text-header h4 { 
+    font-family: 'Montserrat', sans-serif;
+    color: #B8860B; 
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.0rem;
+    margin-top: 10px;
+}
+
+/* The Instruction Text */
+.edu-text-header p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #555;
+    font-style: italic;
+    max-width: 600px;
+    margin: 20px auto 0;
+    font-size: 1.0rem;
+}
+
+.book-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.book-viewport { 
+    width: 100%; 
+    max-width: 600px; /* Limits width on big screens */
+    margin: 0 auto;
+    background: #fff; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15); 
+    border: 1px solid #ddd; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1; /* Keep the image below the buttons */
+    pointer-events: none; /* This makes clicks "pass through" the container to the buttons if they overlap */
+}
+
+
+.book-viewport img { 
+    width: 100%;      /* Makes it responsive */
+    height: auto;     /* Keeps the aspect ratio perfect */
+    max-height: 70vh; /* Prevents it from being taller than the screen */
+    object-fit: contain; 
+    display: block;
+    pointer-events: auto; /* Re-enable clicking on the image itself if needed */
+}
+
+/* Flip Effect */
+.flip-animation { animation: bookFlip 0.5s ease; }
+@keyframes bookFlip {
+    0% { transform: perspective(1000px) rotateY(-20deg); opacity: 0.8; }
+    100% { transform: perspective(1000px) rotateY(0deg); opacity: 1; }
+}
+
+.flip-btn {
+    position: relative;
+    z-index: 100; /* Extremely high to stay on top */
+    cursor: pointer !important;
+    background: #002147;
+    color: #FFD700;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.thumbnail-strip { 
+    display: flex; gap: 8px; overflow-x: scroll; padding: 15px 0; 
+    margin: 20px 0; border-top: 1px solid #eee; 
+}
+/* Fix for the Thumbnail images too */
+.thumb { 
+    width: 60px;      /* Fixed width for thumbs */
+    height: 80px;     /* Fixed height for thumbs */
+    object-fit: cover; 
+    cursor: pointer; 
+    opacity: 0.5; 
+    border: 2px solid transparent; 
+    flex-shrink: 0;   /* Prevents thumbs from squishing */
+}
+
+
+.thumb.active { opacity: 1; border-color: #002147; transform: scale(1.1); }
+.download-link { color: #002147; font-weight: bold; text-decoration: underline; }
+
+
+
+
+
+
+
+
+
+
+
+

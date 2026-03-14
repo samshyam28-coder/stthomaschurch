@@ -191,3 +191,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.vp-slide');
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+function moveSlide(n) {
+    showSlide(currentSlide + n);
+}
+
+// Auto Slide every 5 seconds
+setInterval(() => {
+    moveSlide(1);
+}, 5000);
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Set current date
+    const dateBox = document.getElementById('vp-current-date');
+    if(dateBox) {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        dateBox.textContent = new Date().toLocaleDateString('en-US', options);
+    }
+});

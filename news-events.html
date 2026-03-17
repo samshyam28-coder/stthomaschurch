@@ -304,8 +304,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.vp-slider-container');
     const slides = document.querySelectorAll('.vp-slide');
-    const nextBtn = document.querySelector('#nextBtn');
-    const prevBtn = document.querySelector('#prevBtn');
+    // Selecting buttons by class since IDs weren't in your HTML
+    const nextBtn = document.querySelector('.vp-next');
+    const prevBtn = document.querySelector('.vp-prev');
     
     let currentSlide = 0;
     let slideInterval;
@@ -313,6 +314,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isDragging = false;
 
     function showSlide(index) {
+        sliderContainer.style.transform = `translateX(0px)`;
+        
         slides.forEach(slide => {
             slide.classList.remove('active');
             slide.style.display = 'none';
@@ -328,53 +331,64 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10);
     }
 
-    function nextSlide() { showSlide(currentSlide + 1); }
-    function prevSlide() { showSlide(currentSlide - 1); }
+    // Explicitly define these for the HTML 'onclick' attributes
+    window.moveSlide = function(direction) {
+        showSlide(currentSlide + direction);
+        resetTimer();
+    };
 
-    // --- SWIPE & DRAG LOGIC ---
-    
-    // 1. Mouse Drag (Desktop)
-    sliderContainer.addEventListener('mousedown', (e) => {
-        startX = e.pageX;
-        isDragging = true;
-        sliderContainer.style.cursor = 'grabbing';
-    });
-
-    sliderContainer.addEventListener('mouseup', (e) => {
-        if (!isDragging) return;
-        let endX = e.pageX;
-        handleSwipe(startX, endX);
-        isDragging = false;
-        sliderContainer.style.cursor = 'grab';
-    });
-
-    // 2. Touch Swipe (Mobile/S23 Ultra)
-    sliderContainer.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
-
-    sliderContainer.addEventListener('touchend', (e) => {
-        let endX = e.changedTouches[0].clientX;
-        handleSwipe(startX, endX);
-    });
-
-    function handleSwipe(start, end) {
-        const threshold = 50; // Minimum distance to trigger a slide
-        if (start - end > threshold) {
-            nextSlide(); // Swiped Left
-            resetTimer();
-        } else if (end - start > threshold) {
-            prevSlide(); // Swiped Right
-            resetTimer();
-        }
+    // --- SNAPPY DRAG LOGIC ---
+    function getPosX(e) {
+        return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
     }
 
-    // --- CONTROLS & TIMER ---
-    if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetTimer(); });
-    if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetTimer(); });
+    function dragStart(e) {
+        isDragging = true;
+        startX = getPosX(e);
+        sliderContainer.style.transition = 'none';
+        clearInterval(slideInterval);
+    }
 
-    function startTimer() { slideInterval = setInterval(nextSlide, 5000); }
-    function resetTimer() { clearInterval(slideInterval); startTimer(); }
+    function dragging(e) {
+        if (!isDragging) return;
+        const currentX = getPosX(e);
+        const diff = currentX - startX;
+        sliderContainer.style.transform = `translateX(${diff * 0.15}px)`;
+    }
+
+    function dragEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        sliderContainer.style.transition = 'transform 0.3s ease-out';
+        
+        // Fix: Use changedTouches for mobile end-point
+        const endX = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].clientX;
+        const diff = startX - endX; 
+        const threshold = 50; 
+
+        if (diff > threshold) {
+            window.moveSlide(1); // Swipe Left -> Next
+        } else if (diff < -threshold) {
+            window.moveSlide(-1); // Swipe Right -> Prev
+        } else {
+            sliderContainer.style.transform = `translateX(0px)`;
+        }
+        startTimer();
+    }
+
+    // Event Listeners
+    sliderContainer.addEventListener('mousedown', dragStart);
+    sliderContainer.addEventListener('touchstart', dragStart, {passive: true});
+    window.addEventListener('mousemove', dragging);
+    sliderContainer.addEventListener('touchmove', dragging, {passive: true});
+    window.addEventListener('mouseup', dragEnd);
+    sliderContainer.addEventListener('touchend', dragEnd);
+
+    function startTimer() { 
+        if(slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(() => window.moveSlide(1), 5000); 
+    }
+    function resetTimer() { startTimer(); }
 
     if(slides.length > 0) { showSlide(0); startTimer(); }
 });

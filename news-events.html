@@ -89,7 +89,7 @@
             <li class="dropdown">
                 <a href="#" class="dropbtn">Bulletins <span>&#9662;</span></a>
                 <ul class="dropdown-content">
-                    <li><a href="news-events.html">News and Events</a></li>
+                    <li><a href="#">News and Events</a></li>
                     <li><a href="#">Circular</a></li>
                 </ul>
             </li>
@@ -112,9 +112,8 @@
     <div class="vp-top-bar">
         <div class="church-container vp-bar-flex">
             <div class="vp-date-area">
-    <span class="vp-pulse"></span> 
-    <span id="vp-current-date">Loading date...</span>
-</div>
+                <span class="vp-pulse"></span> <span id="vp-current-date">Saturday, 14 March 2026</span>
+            </div>
             <div class="vp-social-links">
                 <span class="vp-follow-label">CONNECT WITH US:</span>
                 <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -137,12 +136,12 @@
                 </div>
             </div>
             <div class="vp-slide">
-                <img src="images/hero2.jpg" alt="Lent" class="vp-slide-img">
+                <img src="images/church-interior.jpg" alt="Lent" class="vp-slide-img">
                 <div class="vp-slide-content">
                     <span class="vp-tag-gold">Liturgical</span>
                     <h1 class="cinzel-bold">Season of Lent: A Path to Renewal</h1>
                     <p class="vp-malayalam">വിശുദ്ധ നോമ്പുകാലം: പ്രാർത്ഥനയുടെയും പരിത്യാഗത്തിന്റെയും നാളുകൾ.</p>
-                    <a href="#" class="vp-btn-read">SPIRITUAL GUIDE</a>
+                    <a href="lent.html" class="vp-btn-read">SPIRITUAL GUIDE</a>
                 </div>
             </div>
             <button class="vp-prev" onclick="moveSlide(-1)">&#10094;</button>
@@ -302,25 +301,6 @@
 
 
 <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-    function updateLiveDate() {
-        const dateElement = document.getElementById('vp-current-date');
-        if (dateElement) {
-            const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                day: 'numeric', 
-                month: 'long', 
-                year: 'numeric' 
-            };
-            // Result format: Saturday, 14 March 2026
-            dateElement.innerText = now.toLocaleDateString('en-US', options);
-        }
-    }
-
-    updateLiveDate(); // Run immediately on load
-});
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.vp-slider-container');
     const slides = document.querySelectorAll('.vp-slide');

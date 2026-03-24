@@ -3075,7 +3075,74 @@
 
 
 
+/* --- MINIMAL BOTTOM DOWNLOAD --- */
+.lent-download-section {
+    padding: 50px 20px;
+    background: #000;
+    display: flex;
+    justify-content: center;
+}
 
+.lent-minimal-card {
+    background: #111;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+    max-width: 600px;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.lent-minimal-card:hover {
+    border-color: #d4af37;
+    background: #151515;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.lent-card-text h3 {
+    font-family: 'Manjari', sans-serif;
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.lent-card-text p {
+    color: #888;
+    font-size: 0.85rem;
+    margin: 5px 0 0 0;
+}
+
+.lent-download-btn {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+}
+
+.lent-download-btn:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+/* Responsive for S23 Ultra and other phones */
+@media (max-width: 600px) {
+    .lent-minimal-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 30px;
+    }
+}
 
 
 

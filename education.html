@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Thomas Church Poonthura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="education.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="top-head">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="images/church.webp" alt="Church" class="side-img church-main">
+            </div>
+            
+            <div class="header-text">
+                <h1 class="main-title">ST. THOMAS CHURCH POONTHURA</h1>
+                <p class="sub-title">LATIN ARCHDIOCESE OF TRIVANDRUM</p>
+            </div>
+
+            <div class="header-right">
+                <img src="images/stthomas.webp" alt="Patron" class="side-img patron-main">
+            </div>
+        </div>
+    </header>
+
+
+
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+            
+
+        <ul class="nav-links">
+                <li class="dropdown">
+                <a href="index.html" class="dropbtn">Home</a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">About Us <span>&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="ataglance.html">At a Glance</a></li>
+                    <li><a href="history.html">History</a></li>
+                    <li><a href="lineage.html">Lineage of Parish Priests</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">PARISH LIFE <span>&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="catechism.html">Catechism</a></li>
+                    <li><a href="prayergroups.html">Prayer Groups</a></li>
+                    <li><a href="psa.html">Sports Academy</a></li>
+                </ul>
+            </li>
+
+        <li class="dropdown">
+                <a href="#" class="dropbtn">MINISTRIES <span>&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="bcc.html">BCC</a></li>
+                    <li><a href="pastoral.html">PASTORAL</a></li>
+                    <li><a href="laity.html">LAITY</a></li>
+                    <li><a href="social.html">SOCIAL</a></li>
+                    <li><a href="education.html">EDUCATION</a></li>
+                    <li><a href="youth.html">YOUTH</a></li>
+                    <li><a href="family.html">FAMILY</a></li>
+                    <li><a href="fisheries.html">FISHERIES</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Institutions <span>&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="stthomasschoolpoonthura.html">St. Thomas HSS School</a></li>
+                    <li><a href="sthomasnurseryschoolpoonthura.html">St. Thomas Nursery School</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Shrines <span>&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="stantony.html">St. Antony's Shrine</a></li>
+                    <li><a href="vellankanni.html">Vellankanni Matha Shrine</a></li>
+                    <li><a href="stjoseph.html">St. Joseph Shrine</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Bulletins <span>&#9662;</span></a>
+                <ul class="dropdown-content">
+                    <li><a href="news-events.html">News and Events</a></li>
+                    <li><a href="circular.html">Circular</a></li>
+                </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+<section class="edu-platform">
+    <div class="edu-container">
+        
+        <div class="edu-text-header">
+            <h2>Education Ministry</h2>
+            <h4>Empowering Our Community Through Knowledge</h4>
+            <p>Explore our latest initiatives.</p>
+        </div>
+
+        <div class="book-stage">
+            <button class="flip-btn prev" id="prevBtn">❮</button>
+            <div class="book-viewport">
+                <img id="mainPage" src="images/education/1.jpg" alt="Report Page">
+            </div>
+            <button class="flip-btn next" id="nextBtn">❯</button>
+        </div>
+
+        <div class="thumbnail-strip" id="thumbStrip">
+            </div>
+
+        <div class="edu-actions">
+            <p>Page <span id="pageCounter">1</span> of 35</p>
+            <a href="documents/education-ministry.pdf" download class="download-link">Download Full PDF (35 Pages)</a>
+        </div>
+
+    </div>
+</section>
+<script>
+        const totalPages = 35;
+        let current = 1;
+
+        window.onload = function() {
+            const mainImg = document.getElementById('mainPage');
+            const thumbBox = document.getElementById('thumbStrip');
+            const counter = document.getElementById('pageCounter');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            // 1. Generate Thumbnails
+            if (thumbBox) {
+                for (let i = 1; i <= totalPages; i++) {
+                    const t = document.createElement('img');
+                    t.src = `images/education/${i}.jpg`;
+                    t.classList.add('thumb');
+                    if (i === 1) t.classList.add('active');
+                    
+                    t.onclick = () => window.jumpToPage(i);
+                    thumbBox.appendChild(t);
+                }
+            }
+
+            // 2. The Master Function
+            window.jumpToPage = function(n) {
+                if (n < 1 || n > totalPages || !mainImg) return;
+                current = n;
+
+                // Add the flip animation class
+                mainImg.classList.remove('flip-animation');
+                void mainImg.offsetWidth; 
+                mainImg.classList.add('flip-animation');
+
+                mainImg.src = `images/education/${current}.jpg`;
+                if (counter) counter.innerText = current;
+
+                document.querySelectorAll('.thumb').forEach((thumb, index) => {
+                    thumb.classList.toggle('active', index + 1 === current);
+                });
+            };
+
+            // 3. Button Clicks
+            if(nextBtn) nextBtn.onclick = () => window.jumpToPage(current + 1);
+            if(prevBtn) prevBtn.onclick = () => window.jumpToPage(current - 1);
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3 class="footer-logo-text">ST. THOMAS CHURCH<br>POONTHURA, TVPM</h3>
+            <p class="footer-desc">
+                A beacon of faith and heritage in Poonthura under the Latin Archdiocese of Trivandrum. Serving our community with devotion since generations.
+            </p>
+            <div class="footer-socials">
+                <a href="#" target="_blank" class="social-icon" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" target="_blank" class="social-icon" title="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="#" target="_blank" class="social-icon" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" target="_blank" class="social-icon" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>QUICK LINKS</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="history.html">Our History</a></li>
+                <li><a href="news-events.html">News & Events</a></li>
+                <li><a href="#liturgy-section">Mass Timings</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>CONTACT US</h4>
+            <div class="contact-item">
+                <i class="fa-solid fa-location-dot gold-icon"></i>
+                <p>Poonthura, Trivandrum,<br>Kerala, India</p>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-phone gold-icon"></i>
+                <p>+91 0471 234XXXX</p>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope gold-icon"></i>
+                <p>info@stthomaschurch.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 St. Thomas Church, Poonthura. All Rights Reserved.</p>
+        <p class="dev-credit">Designed with ❤️ for the Parish</p>
+    </div>
+</footer>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

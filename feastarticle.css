@@ -1,0 +1,920 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Manjari:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Meera+Inimai&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-head {
+    background-color: #f4eee0; 
+    padding: 20px 0;
+    border-bottom: 3px solid #d4af37;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* This is your Base Style */
+.side-img {
+    height: 150px; /* Changed this to 150px for a better look, change to 300 if you want it huge */
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.header-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 42px; /* Set desktop size here */
+    color: #c41e3a;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.sub-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; /* Set desktop size here */
+    color: #002147;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+/* MOBILE SETTINGS (Small Screens) */
+@media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 0.8fr 3fr 0.8fr;
+        gap: 5px;
+    }
+    .side-img {
+        height: 55px; /* Tiny for phones */
+    }
+    .main-title {
+        font-size: 15px;
+        letter-spacing: 0;
+    }
+    .sub-title {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+/* TABLET SETTINGS */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .side-img {
+        height: 100px;
+    }
+    .main-title {
+        font-size: 28px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-head {
+    background-color: #f4eee0; 
+    padding: 20px 0;
+    border-bottom: 3px solid #d4af37;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* This is your Base Style */
+.side-img {
+    height: 150px; /* Changed this to 150px for a better look, change to 300 if you want it huge */
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.header-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 42px; /* Set desktop size here */
+    color: #c41e3a;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.sub-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; /* Set desktop size here */
+    color: #002147;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+/* MOBILE SETTINGS (Small Screens) */
+@media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 0.8fr 3fr 0.8fr;
+        gap: 5px;
+    }
+    .side-img {
+        height: 55px; /* Tiny for phones */
+    }
+    .main-title {
+        font-size: 15px;
+        letter-spacing: 0;
+    }
+    .sub-title {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+/* TABLET SETTINGS */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .side-img {
+        height: 100px;
+    }
+    .main-title {
+        font-size: 28px;
+    }
+}
+
+/* --- NAVIGATION BAR --- */
+.main-nav {
+    background-color: #002147;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 10px 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #f4eee0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+/* --- THE "MODEL" DROPDOWN (DESKTOP) --- */
+.dropdown { position: relative; }
+
+.dropdown-content {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #f4eee0; 
+    min-width: 250px;
+    top: 100%; /* Sits exactly at the bottom of the blue nav bar */
+    left: 0;
+    list-style: none;
+    padding: 0;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(15px); /* This creates the "slowly down" effect */
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    pointer-events: none;
+    border-top: 3px solid #d4af37; /* Pro detail from image_c08336.png */
+}
+
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-content {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0); /* Slides up to the bar */
+        pointer-events: auto;
+    }
+}
+
+
+/* --- MOBILE HAMBURGER (BREATHING SPACE) --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px; /* Increased gap for breath space */
+    z-index: 1001; 
+}
+
+.bar {
+    width: 28px; /* Slightly wider for better look */
+    height: 1px;
+    background-color: #f4eee0;
+    transition: 0.3s;
+}
+
+ 
+/* Desktop Separator Lines */
+.dropdown-content li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08); 
+}
+
+.dropdown-content li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content li a {
+    padding: 12px 25px; /* Indent space on the left */
+    display: block;
+    font-size: 14px;
+    color: #002147; 
+    text-transform: capitalize;
+    text-align: left;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.dropdown-content li a:hover {
+    background-color: #e9e2d0; /* Subtle hover color like image_c08336.png */
+    color: #002147;
+    padding-left: 30px; /* Slight move-right animation on hover */
+}
+
+/* --- MOBILE RESPONSIVE (Arranged for Pro View) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        gap: 3px; /* Professional breathing space between bars */
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #002147;
+        position: absolute;
+        top: 100%; /* FIXED: This kills the white bar gap for good */
+        left: 0;
+        text-align: right;
+        padding: 5px 0;
+        border-top: 0px solid rgba(255,255,255,0.1); /* Subtle divider from top head */
+    }
+
+    .nav-links.active { display: flex; }
+
+    /* Main List Item Spacing */
+    .nav-links li {
+        width: 100%;
+        border-bottom: 2px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-links li a {
+        padding: 2px 25px; /* Comfortable tap target for fingers */
+        display: block;
+        color: #f4eee0;
+        transition: 0.5s ease;
+    }
+
+    /* MOBILE DROPDOWN (Fresh Reset Style) */
+    .dropdown-content {
+        position: static;
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        width: 100%;
+        background-color: #001a38; /* Darker navy for contrast */
+        border-right: 4px solid #d4af37; /* The Gold side-indicator */
+        border-top: none; /* Removed desktop gold border */
+        padding: 0px;
+        transition: all 0.4s ease-in-out;
+    }
+
+
+    /* Remove lines between sub-items for a "Fresh" look */
+    .dropdown-content li { border-bottom: none; }
+
+    .dropdown-content li a {
+        color: #cccccc;
+        text-align: right;
+        padding: 6px 45px; /* Indented from right */
+        font-size: 13px;
+        text-transform: capitalize;
+        transition: 0.3s ease; /* Smooth color change */
+    }
+}
+
+/* GOLD HOVER EFFECT FOR SUB-MENU ITEMS */
+    .dropdown-content li a:hover 
+    .dropdown-content li a:active{
+        color: #d4af37;
+        background-color: transparent;
+    }
+
+/* --- FIXED HAMBURGER TO X ANIMATION --- */
+.bar { 
+    width: 28px; 
+    height: 3px; 
+    background-color: #f4eee0; 
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother curve */
+}
+
+/* Perfect X alignment */
+#mobile-menu.is-active .bar:nth-child(2) { 
+    opacity: 0; 
+}
+#mobile-menu.is-active .bar:nth-child(1) { 
+    transform: translateY(9px) rotate(45deg); 
+}
+#mobile-menu.is-active .bar:nth-child(3) { 
+    transform: translateY(-9px) rotate(-45deg); 
+}
+
+/* --- REPAIR: ADD THIS TO THE VERY BOTTOM OF THE FILE --- */
+.dropdown-content.open {
+    max-height: 500px !important; 
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    padding: 5px 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.church-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 15px; 
+}
+
+/* --- 2. HERO SECTION (HIGH PERFORMANCE ZOOM) --- */
+.vp-feast-hero {
+    position: relative;
+    height: 60vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+
+
+.vp-hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1; /* Sits at the bottom */
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Ensures video doesn't stretch */
+}
+
+
+.vp-hero-overlay {
+    position: relative;
+    z-index: 2; /* Sits on top of the video */
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 33, 71, 0.5); /* Dark tint so text is readable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.vp-feast-hero:hover {
+    background-size: 108%; /* Subtle zoom effect on hover */
+}
+
+.vp-badge { 
+    background: #D4AF37; 
+    color: #002147; 
+    padding: 8px 25px; 
+    border-radius: 50px; 
+    font-weight: 700; 
+    margin-bottom: 15px; 
+    display: inline-block; 
+}
+
+.cinzel-bold { 
+    font-family: 'Cinzel', serif; 
+    font-size: 3rem; 
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
+}
+
+.vp-hero-date { 
+    color: #D4AF37; 
+    font-size: 1.8rem; 
+    letter-spacing: 2px; 
+    font-weight: 600; 
+}
+
+/* --- MAIN GRID --- */
+.vp-main-grid { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px; 
+    padding: 60px 0; 
+}
+
+/* --- INTRO CARD --- */
+.vp-feast-intro-card { 
+    background: white; 
+    padding: 40px; 
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    margin-bottom: 40px; 
+    border-left: 5px solid #D4AF37; 
+}
+
+.vp-section-title { 
+    font-family: 'Cinzel', serif; 
+    color: #002147; 
+    margin-bottom: 20px; 
+    text-align: center; 
+}
+
+.vp-intro-content p { 
+    font-family: 'Manjari', sans-serif; 
+    font-size: 1.15rem; 
+    line-height: 1.8; 
+    text-align: justify; 
+    margin-bottom: 15px; 
+}
+
+/* --- 5. TIMELINE: ELITE SMOOTH LIFT --- */
+.vp-day-card { 
+    display: flex; 
+    background: white; 
+    border-radius: 12px; 
+    margin-bottom: 30px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    border: 1px solid transparent;
+    /* Specific properties only for peak performance */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    backface-visibility: hidden; 
+}
+
+
+
+/* Card lift and gold highlight on hover */
+.vp-day-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,33,71,0.15);
+    border-color: #D4AF37;
+}
+
+.vp-date-box { 
+    background: #002147; 
+    color: white; 
+    min-width: 100px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+
+/* Date box turns gold when card is hovered */
+.vp-day-card:hover .vp-date-box {
+    background: #D4AF37;
+    color: #002147;
+}
+
+.vp-date-box .day { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+.vp-date-box .month { font-size: 1rem; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
+
+.vp-day-details { padding: 30px; flex: 1; }
+.vp-tag { color: #D4AF37; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; }
+.vp-day-details h3 { 
+    font-family: 'Manjari', sans-serif; 
+    font-size: 1.3rem; 
+    margin: 10px 0 20px 0; 
+    color: #002147; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 10px; 
+}
+
+/* --- EVENT ICON GLOW EFFECTS --- */
+.vp-event { display: flex; gap: 15px; margin-bottom: 15px; font-size: 1rem; cursor: pointer; }
+.vp-event i { 
+    margin-top: 4px; 
+    font-size: 1.2rem; 
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+}
+
+
+/* ☀️ Sun Hover Glow */
+.vp-event:hover .fa-sun {
+    color: #FFD54F;
+    text-shadow: 0 0 10px rgba(255, 160, 0, 0.6);
+    transform: scale(1.2) rotate(20deg);
+}
+
+/* Sun/Moon Glow & Rotation */
+.vp-event:hover .fa-sun { color: #FFD54F; transform: scale(1.3) rotate(45deg); }
+.vp-event:hover .fa-moon { color: #9FA8DA; transform: scale(1.3) rotate(-20deg); }
+
+.fa-sun { color: #FFA000; }
+.fa-moon { color: #5C6BC0; }
+.fa-flag, .fa-crown { color: #D4AF37; }
+
+
+
+.vp-event.highlight { 
+    background: #FFF9E6; 
+    padding: 20px; 
+    border-radius: 8px; 
+    border-left: 4px solid #D4AF37; 
+}
+
+.vp-event strong { display: block; color: #222; margin-bottom: 5px; font-size: 1.1rem; }
+
+/* --- SIDEBAR & LINK HOVER EFFECTS --- */
+.vp-sidebar-box { 
+    background: white; 
+    padding: 30px; 
+    border-radius: 12px; 
+    margin-bottom: 30px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+}
+
+.gold-border { border-top: 6px solid #D4AF37; }
+
+.vp-side-title { 
+    font-family: 'Cinzel', serif; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 10px; 
+}
+
+.vp-res-list { list-style: none; }
+
+/* --- SIDEBAR LINKS --- */
+.vp-res-list li { 
+    padding: 12px 0; 
+    border-bottom: 1px solid #f9f9f9; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    transition: all 0.3s ease;
+}
+
+.vp-res-list li:hover { 
+    color: #D4AF37; 
+    padding-left: 12px;
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.vp-res-list i { color: #D4AF37; }
+
+.vp-res-list li:hover i {
+    transform: translateX(5px);
+}
+
+.vp-quote { font-style: italic; color: #002147; font-weight: 700; text-align: center; }
+.vp-quote-mal { 
+    text-align: center; 
+    font-family: 'Manjari', sans-serif; 
+    font-size: 0.9rem; 
+    margin-top: 5px; 
+    color: #777; 
+}
+
+/* --- FINALE CARD STYLING --- */
+.vp-day-card.finale {
+    border: 2px solid #D4AF37;
+    background: #fffdf5;
+}
+
+/* --- 8. MOBILE OPTIMIZATION --- */
+@media (max-width: 992px) {
+    .vp-main-grid { grid-template-columns: 1fr; }
+    
+    /* Disable lift on mobile for better touch UX */
+    .vp-day-card:hover { transform: none; }
+    
+    .vp-day-card { flex-direction: column; }
+    .vp-date-box { 
+        flex-direction: row; 
+        gap: 15px; 
+        padding: 15px; 
+        min-width: 100%; 
+    }
+    
+    .cinzel-bold { font-size: 2.2rem; }
+    .vp-intro-content p { text-align: left; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   MAIN FOOTER STYLES
+   ========================================= */
+.main-footer {
+    background-color: #002147; /* Signature Deep Blue */
+    color: #ffffff;
+    padding: 80px 20px 30px; /* Increased top padding for a grand feel */
+    font-family: 'Poppins', sans-serif;
+    border-top: 5px solid #D4AF37; /* Slightly thicker Gold Top Border */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr; 
+    gap: 50px;
+}
+
+/* --- Column 1: Brand & Socials --- */
+.footer-logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #D4AF37;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.footer-desc {
+    line-height: 1.8;
+    color: #cbd5e0;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+/* Social Media Icons Styling */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D4AF37;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon:hover {
+    background-color: #D4AF37;
+    color: #002147;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    border-color: #D4AF37;
+}
+
+/* --- Column 2: Links --- */
+.footer-col h4 {
+    color: #D4AF37;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background: #D4AF37;
+}
+
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 15px; }
+.footer-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover { 
+    color: #D4AF37; 
+    padding-left: 8px; 
+}
+
+/* --- Column 3: Contact Info --- */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #cbd5e0;
+}
+
+.gold-icon {
+    color: #D4AF37;
+    font-size: 1.1rem;
+    margin-top: 3px;
+}
+
+.contact-item p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- Bottom Bar --- */
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    margin: 5px 0;
+}
+
+.dev-credit { 
+    font-style: italic; 
+    opacity: 0.6;}
+
+    /* --- Mobile Optimization (Fixed for S23 Ultra) --- */
+@media (max-width: 768px) {
+    .main-footer {
+        background: linear-gradient(180deg, #002147 0%, #00152e 100%);
+        padding: 50px 15px 30px; /* Slightly less side padding */
+        overflow-x: hidden;      /* Prevents any horizontal scrolling */
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr; 
+        text-align: center;
+        gap: 40px;
+        width: 100%;             /* Ensures container stays in bounds */
+    }
+
+    .footer-col {
+        width: 100%;
+        padding: 0 10px;         /* Padding inside each column */
+        box-sizing: border-box;
+    }
+
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-socials {
+        justify-content: center;
+    }
+
+    /* THE CONTACT FIX */
+    .contact-item {
+        flex-direction: column;  /* Icon on top */
+        align-items: center;     /* Everything centered */
+        gap: 5px;
+        margin-bottom: 25px;
+        width: 100%;
+    }
+
+    .contact-item p {
+        font-size: 0.9rem;
+        word-wrap: break-word;   /* This stops the email from going outside */
+        overflow-wrap: break-word;
+        max-width: 280px;        /* Keeps the text block narrow enough */
+        margin: 0 auto;
+    }
+
+    .gold-icon {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .footer-links a:hover {
+        padding-left: 0; 
+    }
+}

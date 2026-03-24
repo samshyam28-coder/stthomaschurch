@@ -392,6 +392,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if(slides.length > 0) { showSlide(0); startTimer(); }
 });
+
+
+// --- LIVE DATE UPDATER ---
+function updateLiveDate() {
+    const dateElement = document.getElementById('vp-current-date');
+    if (dateElement) {
+        const now = new Date();
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        // This makes it look like: Tuesday, 24 March 2026
+        dateElement.textContent = now.toLocaleDateString('en-US', options);
+    }
+}
+
+// Run it immediately when the page loads
+document.addEventListener('DOMContentLoaded', updateLiveDate);
+
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

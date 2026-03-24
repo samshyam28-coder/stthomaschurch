@@ -2120,11 +2120,12 @@
 .vp-prev:hover, .vp-next:hover { background: #D4AF37; }
 
 /* 3. UNIFORM COMPACT GRID */
-.vp-main-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 20px; padding: 30px 20px; max-width: 1200px; margin: 0 auto; }
-.vp-section-header { font-family: 'Cinzel', serif; font-size: 1.4rem; border-bottom: 2px solid #D4AF37; padding-bottom: 5px; margin-bottom: 20px; }
-.vp-masonry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.vp-main-grid { display: grid; grid-template-columns: 2.5fr 1fr; gap: 20px; padding: 30px; max-width: 1200px; margin: 0 auto; }
+.vp-section-header { font-family: 'Cinzel', serif; font-size: 1.4rem; border-bottom: 2px solid #D4AF37; padding-bottom: 5px; margin-bottom: 20px; padding-top: 30px; }
+.vp-masonry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding-top: 30px; padding-bottom: 30px;}
 
 /* UNIFORM CARDS */
+
 .vp-news-card { background: #fff; border: 1px solid #eee; transition: 0.3s; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
 .vp-news-card:hover { border-color: #D4AF37; transform: translateY(-3px); }
 .vp-card-img-box { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; } 
@@ -2138,8 +2139,9 @@
 .vp-read-more { text-decoration: none; color: #002147; font-weight: 800; font-size: 0.65rem; margin-top: auto; text-transform: uppercase; }
 
 /* 4. SIDEBAR CONDENSED */
-.vp-sidebar-box { background: #f9f9f9; padding: 15px; margin-bottom: 20px; border-radius: 4px; border-left: 3px solid #D4AF37; }
-.vp-side-title { font-family: 'Cinzel', serif; font-size: 0.9rem; margin-bottom: 15px; color: #002147; }
+.vp-sidebar {padding-top: 50px;}
+.vp-sidebar-box { background: #f9f9f9; padding: 15px; border-radius: 4px; border-left: 3px solid #D4AF37; }
+.vp-side-title { font-family: 'Cinzel', serif; font-size: 0.9rem; color: #002147; }
 .vp-res-list { list-style: none; padding: 0; }
 .vp-res-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
 .vp-res-list a { text-decoration: none; color: #002147; font-size: 0.75rem; display: flex; justify-content: space-between; font-weight: 600; }
@@ -3070,3 +3072,17 @@
     .lent-easter-main-title { font-size: 2.5rem; }
     .lent-saturday-event { flex-direction: column; text-align: center; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

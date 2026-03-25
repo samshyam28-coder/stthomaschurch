@@ -642,3 +642,114 @@
         padding-left: 0; 
     }
 }
+
+
+
+
+
+
+
+
+/* Document Hub - St. Thomas Church Poonthura */
+.download-section {
+    padding: 60px 20px;
+    background-color: #fcfcfc;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Manjari', sans-serif;
+    color: #4a0e0e;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.doc-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* 🚀 CARD HOVER */
+.doc-card:hover {
+    transform: translateY(-10px);
+    border-color: #d4af37;
+    box-shadow: 0 20px 40px rgba(74, 14, 14, 0.15);
+}
+
+.doc-icon {
+    font-size: 3.5rem;
+    color: #4a0e0e;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.doc-card:hover .doc-icon {
+    transform: scale(1) rotate(1deg);
+    color: #d4af37;
+}
+
+.doc-name {
+    font-family: 'Manjari', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.doc-sub {
+    font-size: 0.85rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+/* 🚀 BUTTON WITH ELITE HOVER */
+.download-btn {
+    background: #4a0e0e;
+    color: #ffffff;
+    width: 90%;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid #4a0e0e;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background: #d4af37; /* Turns Gold on hover */
+    border-color: #d4af37;
+    color: #4a0e0e;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* 📱 MOBILE FIX */
+@media screen and (max-width: 768px) {
+    .section-title { font-size: 1.8rem; }
+    .doc-grid { grid-template-columns: 1fr; }
+    .download-btn { width: 100%; }
+}

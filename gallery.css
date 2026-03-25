@@ -420,7 +420,108 @@
 
 
 
+/* Gallery Hub - St. Thomas Church Poonthura */
+.gallery-hub {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
 
+.hub-title {
+    text-align: center;
+    font-family: 'Manjari', sans-serif;
+    color: #4a0e0e;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* 📱 The Smart Grid: 4 columns on PC, 2 on Mobile */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.album-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5; /* Slightly tall cards look premium */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.album-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* 🚀 Glassmorphism Overlay */
+.album-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(74, 14, 14, 0.9) 10%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    transition: background 0.3s ease;
+}
+
+.album-name {
+    font-family: 'Manjari', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #ffd700; /* Gold Title */
+    margin: 0;
+    line-height: 1.2;
+}
+
+.album-count {
+    font-size: 0.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+/* 🚀 Hover Effects (Desktop) */
+@media (hover: hover) {
+    .album-card:hover {
+        transform: translateY(-10px);
+    }
+    .album-card:hover img {
+        transform: scale(1.1);
+    }
+    .album-card:hover .album-overlay {
+        background: linear-gradient(to top, rgba(212, 175, 55, 0.8) 10%, rgba(0,0,0,0.3) 100%);
+    }
+    .album-card:hover .album-name {
+        color: #4a0e0e; /* Title turns Maroon on Gold background */
+    }
+}
+
+/* 📱 S23 Ultra / Mobile Optimization */
+@media screen and (max-width: 768px) {
+    .gallery-hub { padding: 30px 10px; }
+    .hub-title { font-size: 1.8rem; }
+    
+    .album-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Columns exactly */
+        gap: 12px;
+    }
+    
+    .album-name { font-size: 1.1rem; }
+    .album-overlay { padding: 12px; }
+}
 
 
 

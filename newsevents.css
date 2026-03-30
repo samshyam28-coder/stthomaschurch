@@ -735,8 +735,8 @@
 
 .vp-card-body { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; }
 .vp-cat { color: #D4AF37; font-weight: 800; font-size: 0.6rem; margin-bottom: 5px; }
-.vp-card-body h3 { font-family: 'Cinzel', serif; font-size: 0.95rem; margin: 5px 0; line-height: 1.2; height: 2.4em; overflow: hidden; }
-.vp-card-body p { font-size: 0.75rem; color: #666; line-height: 1.4; margin-bottom: 8px; height: 2.8em; overflow: hidden; }
+.vp-card-body h3 { font-family: 'manjari'; font-size: 1rem; margin: 5px 0; line-height: 1.2; height: 2.4em; overflow: hidden; }
+.vp-card-body p { font-size: 0.85rem; color: #666; line-height: 1.4; margin-bottom: 8px; height: 2.8em; overflow: hidden; font-family: 'manjari'; }
 .vp-read-more { text-decoration: none; color: #002147; font-weight: 800; font-size: 0.65rem; margin-top: auto; text-transform: uppercase; }
 
 /* 4. SIDEBAR CONDENSED */

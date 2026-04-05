@@ -230,3 +230,57 @@ document.addEventListener('DOMContentLoaded', () => {
         dateBox.textContent = new Date().toLocaleDateString('en-US', options);
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("feastModal");
+    const closeX = document.getElementById("closeModal");
+    const closeBtn = document.getElementById("continueBtn");
+
+    // Show popup only once per browser session
+    if (!sessionStorage.getItem("feastAnnounced")) {
+        // Delay appearance by 1.5 seconds for better feel
+        setTimeout(() => {
+            modal.style.display = "block";
+        }, 500);
+    }
+
+    function hideModal() {
+        modal.style.display = "none";
+        sessionStorage.setItem("feastAnnounced", "true");
+    }
+
+    closeX.onclick = hideModal;
+    closeBtn.onclick = hideModal;
+
+    // Close if user clicks outside the white box
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            hideModal();
+        }
+    }
+});

@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Official website of St. Thomas Church, Poonthura. Stay updated with parish news, Lent schedules, Catechism, and more under the Latin Archdiocese of Trivandrum.">
-    <meta name="keywords" content="St Thomas Church Poonthura, Poonthura Church, Latin Archdiocese of Trivandrum, Church in Trivandrum, Catholic Church Kerala">
-    <meta name="author" content="St. Thomas Church, Poonthura">
-    <meta property="og:description" content="Stay connected with our faith community. View schedules, history, and news.">
-    <meta property="og:type" content="website">
-    <meta name="google-site-verification" content="M3RDy9lQHrTD3Gajwb7saxF_igheqUJAAS0a9uscSKk" />
+    <meta name="description" content="Explore the Family Ministry of St. Thomas Church, Poonthura. Access our 2026 reports, spiritual guides, and initiatives focused on strengthening Christian families and community bonds.">
+<meta name="keywords" content="St. Thomas Church Poonthura, Family Ministry, Poonthura Church, Christian Family Guide, Parish Reports, St. Thomas Church Reports, കുടുംബ മിനിസ്ട്രി, പൂന്തുറ സെന്റ് തോമസ് ചർച്ച്">
+<meta name="author" content="St. Thomas Church Poonthura">
 
+<meta property="og:title" content="Family Ministry - St. Thomas Church Poonthura">
+<meta property="og:description" content="Download the latest Family Ministry reports and guides. Building stronger families in faith.">
+<meta property="og:image" content="https://stthomaschurchpoonthura.com/images/family/1.jpg">
+<meta property="og:url" content="https://stthomaschurchpoonthura.com/family.html">
+<meta property="og:type" content="website">
     <title>St. Thomas Church Poonthura</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="family.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
      <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
@@ -116,16 +120,131 @@
         </ul>
     </div>
 </nav>
+
+
+
+
+
+
+
+
+
+<section class="family-platform">
+    <div class="family-container">
+        
+        <div class="family-text-header">
+            <h2>Family Ministry</h2>
+            <h4>Strengthening the Foundation of Our Faith</h4>
+        </div>
+
+        <div class="book-stage">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <button class="flip-btn prev" id="prevBtn">❮</button>
+            
+            <div class="book-viewport">
+                <img id="mainPage" src="images/family/1.jpg" alt="Family Ministry Report">
+            </div>
+            
+            <button class="flip-btn next" id="nextBtn">❯</button>
+        </div>
+
+        <div class="thumbnail-strip" id="thumbStrip">
+            </div>
+
+        <div class="family-actions">
+            <div class="page-info">
+                Page <span id="pageCounter">1</span> of 6
+            </div>
+            <a href="documents/family-ministry.pdf" download class="download-btn">
+                <span>📥</span> Download Full Report (PDF)
+            </a>
+        </div>
+
+    </div>
 </section>
 
 
 
+<script>
+    const totalPages = 6;
+    let current = 1;
+
+    window.onload = function() {
+        const mainImg = document.getElementById('mainPage');
+        const thumbBox = document.getElementById('thumbStrip');
+        const counter = document.getElementById('pageCounter');
+        const progBar = document.getElementById('progressBar');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        // 1. Generate Thumbnails
+        for (let i = 1; i <= totalPages; i++) {
+            const t = document.createElement('img');
+            t.src = `images/family/${i}.jpg`;
+            t.classList.add('thumb');
+            if (i === 1) t.classList.add('active');
+            t.onclick = () => jumpToPage(i);
+            thumbBox.appendChild(t);
+        }
+
+        // 2. Navigation Logic
+        window.jumpToPage = function(n) {
+            if (n < 1 || n > totalPages) return;
+            current = n;
+
+            // Update Image
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = `images/family/${current}.jpg`;
+                mainImg.style.opacity = '1';
+            }, 200);
+
+            // Update Text & Progress
+            counter.innerText = current;
+            progBar.style.width = (current / totalPages) * 100 + "%";
+
+            // Update Thumbs
+            document.querySelectorAll('.thumb').forEach((thumb, index) => {
+                thumb.classList.toggle('active', index + 1 === current);
+            });
+        };
+
+        nextBtn.onclick = () => jumpToPage(current + 1);
+        prevBtn.onclick = () => jumpToPage(current - 1);
+    };
 
 
+// --- TOUCH SWIPE LOGIC FOR MOBILE ---
+let touchstartX = 0;
+let touchendX = 0;
+
+const gestureZone = document.getElementById('mainPage');
+
+gestureZone.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+}, false);
+
+gestureZone.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    handleGesture();
+}, false);
+
+function handleGesture() {
+    if (touchendX < touchstartX - 50) {
+        // Swiped Left -> Go to Next Page
+        window.jumpToPage(current + 1);
+    }
+    if (touchendX > touchstartX + 50) {
+        // Swiped Right -> Go to Previous Page
+        window.jumpToPage(current - 1);
+    }
+}
 
 
-
-
+</script>
 
 
 
@@ -155,16 +274,16 @@
                 A beacon of faith and heritage in Poonthura under the Latin Archdiocese of Trivandrum. Serving our community with devotion since generations.
             </p>
             <div class="footer-socials">
-                <a href="https://www.facebook.com/share/18dadX6Ttn/"  class="social-icon" title="Facebook">
+                <a href="#" target="_blank" class="social-icon" title="Facebook">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a href="https://www.youtube.com/channel/UC7TZtCtYHpCrc19Ux-s221Q" class="social-icon" title="YouTube">
+                <a href="#" target="_blank" class="social-icon" title="YouTube">
                     <i class="fa-brands fa-youtube"></i>
                 </a>
-                <a href="https://www.instagram.com/poonthuramedia?igsh=OHl4M255cGo1MXBr"  class="social-icon" title="Instagram">
+                <a href="#" target="_blank" class="social-icon" title="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <a href="$" target="_blank" class="social-icon" title="WhatsApp">
+                <a href="#" target="_blank" class="social-icon" title="WhatsApp">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
             </div>
@@ -188,11 +307,11 @@
             </div>
             <div class="contact-item">
                 <i class="fa-solid fa-phone gold-icon"></i>
-                <p>+91 471 238 0660</p>
+                <p>0471 234XXXX</p>
             </div>
             <div class="contact-item">
                 <i class="fa-solid fa-envelope gold-icon"></i>
-                <p>stthomaschurchpoonthura2022@gmai.com</p>
+                <p>info@stthomaschurch.com</p>
             </div>
         </div>
     </div>

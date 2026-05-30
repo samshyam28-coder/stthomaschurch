@@ -791,9 +791,9 @@
 /* --- THE ROYAL FRAMES --- */
 
 /* Image Assignments */
-.vicar-img { background-image: url('images/fr1.jpg'); }
+.vicar-img { background-image: url('images/fr1.jpeg'); }
 .asst-1-img { background-image: url('images/fr2.jpeg'); }
-.asst-2-img { background-image: url('images/fr3.jpeg'); }
+.asst-2-img { background-image: url('images/fr3.jpe'); }
 
 /* Frame Settings */
 .photo-frame-large, .photo-frame-small {
